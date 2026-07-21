@@ -1,0 +1,218 @@
+{
+  "project": {
+    "id": "demo-project-001",
+    "workspace_id": "local-workspace",
+    "name": "演示品牌",
+    "current_stage": "LOGO",
+    "status": "ACTIVE",
+    "version": 3,
+    "created_at": "2026-07-04T10:00:00Z",
+    "updated_at": "2026-07-04T10:06:00Z"
+  },
+  "brand_spec": {
+    "schema_version": 1,
+    "project_name": "演示品牌",
+    "industry": "茶饮",
+    "target_audiences": ["城市通勤者", "年轻白领"],
+    "style_keywords": ["清爽", "现代", "可信赖"],
+    "reference_artifact_ids": [],
+    "source_map": {}
+  },
+  "current_stage": "LOGO",
+  "stage_runs": {
+    "INTAKE": {
+      "id": "demo-run-intake-001",
+      "project_id": "demo-project-001",
+      "stage": "INTAKE",
+      "status": "SUCCEEDED",
+      "attempt": 1,
+      "error_code": null,
+      "result_version_id": "demo-version-intake-001",
+      "parent_stage_run_id": null,
+      "workflow_thread_id": "demo-thread-001",
+      "error_message": null,
+      "created_at": "2026-07-04T10:00:00Z",
+      "updated_at": "2026-07-04T10:01:00Z"
+    },
+    "DIRECTIONS": {
+      "id": "demo-run-directions-001",
+      "project_id": "demo-project-001",
+      "stage": "DIRECTIONS",
+      "status": "SUCCEEDED",
+      "attempt": 1,
+      "error_code": null,
+      "result_version_id": "demo-version-directions-001",
+      "parent_stage_run_id": "demo-run-intake-001",
+      "workflow_thread_id": "demo-thread-001",
+      "error_message": null,
+      "created_at": "2026-07-04T10:02:00Z",
+      "updated_at": "2026-07-04T10:03:00Z"
+    },
+    "LOGO": {
+      "id": "demo-run-logo-001",
+      "project_id": "demo-project-001",
+      "stage": "LOGO",
+      "status": "QUEUED",
+      "attempt": 0,
+      "error_code": null,
+      "result_version_id": null,
+      "parent_stage_run_id": "demo-run-directions-001",
+      "workflow_thread_id": "demo-thread-001",
+      "error_message": null,
+      "created_at": "2026-07-04T10:06:00Z",
+      "updated_at": "2026-07-04T10:06:00Z"
+    }
+  },
+  "versions": {
+    "INTAKE": {
+      "id": "demo-version-intake-001",
+      "project_id": "demo-project-001",
+      "stage_run_id": "demo-run-intake-001",
+      "stage": "INTAKE",
+      "version_no": 1,
+      "schema_version": 1,
+      "input_refs": {},
+      "output": {
+        "schema_version": 1,
+        "ready": true,
+        "questions": [],
+        "brand_spec_patch": {},
+        "suggestions": [],
+        "conflicts": []
+      },
+      "status": "GENERATED",
+      "created_at": "2026-07-04T10:01:00Z"
+    },
+    "DIRECTIONS": {
+      "id": "demo-version-directions-001",
+      "project_id": "demo-project-001",
+      "stage_run_id": "demo-run-directions-001",
+      "stage": "DIRECTIONS",
+      "version_no": 1,
+      "schema_version": 1,
+      "input_refs": {
+        "brand_spec_version": 1
+      },
+      "output": {
+        "schema_version": 1,
+        "brief": {
+          "positioning": "面向城市通勤者的现代茶饮品牌",
+          "audience_insight": "目标用户需要清爽、有记忆点的日常茶饮。",
+          "brand_promise": "用东方茶香提供轻盈的城市片刻。",
+          "tone": "清爽、现代、可信赖"
+        },
+        "directions": [
+          {
+            "id": "direction-001",
+            "name": "方向一",
+            "concept": "以东方茶叶和城市线条构建现代视觉。",
+            "keywords": ["现代", "东方", "清爽"],
+            "palette": [
+              {"name": "Tea Green", "hex": "#2F8F5B", "usage": "主品牌色"},
+              {"name": "Rice White", "hex": "#F6F1E6", "usage": "背景色"},
+              {"name": "Ink Black", "hex": "#1E1E1E", "usage": "文字色"}
+            ],
+            "typography": {
+              "heading_style": "几何无衬线标题",
+              "body_style": "高可读性无衬线正文"
+            },
+            "composition": "使用垂直中轴和留白强化识别。",
+            "rationale": "平衡东方感和城市效率。",
+            "risks": [],
+            "image_prompt": "modern tea brand visual direction",
+            "preview_asset_id": "11111111-1111-4111-8111-111111111111"
+          },
+          {
+            "id": "direction-002",
+            "name": "方向二",
+            "concept": "用轻盈插画和明亮色彩表达亲和力。",
+            "keywords": ["轻盈", "亲和", "明亮"],
+            "palette": [
+              {"name": "Fresh Mint", "hex": "#68C7A0", "usage": "主品牌色"},
+              {"name": "Warm White", "hex": "#FFF9F0", "usage": "背景色"},
+              {"name": "Leaf Dark", "hex": "#234236", "usage": "文字色"}
+            ],
+            "typography": {
+              "heading_style": "圆润无衬线标题",
+              "body_style": "清晰无衬线正文"
+            },
+            "composition": "用卡片式信息层级承载卖点。",
+            "rationale": "更适合年轻轻社交场景。",
+            "risks": [],
+            "image_prompt": "friendly tea brand visual direction",
+            "preview_asset_id": "22222222-2222-4222-8222-222222222222"
+          },
+          {
+            "id": "direction-003",
+            "name": "方向三",
+            "concept": "以高对比排版和单色图形建立强识别。",
+            "keywords": ["克制", "高对比", "先锋"],
+            "palette": [
+              {"name": "Signal Green", "hex": "#00A76F", "usage": "强调色"},
+              {"name": "Pure White", "hex": "#FFFFFF", "usage": "背景色"},
+              {"name": "Deep Black", "hex": "#121212", "usage": "文字色"}
+            ],
+            "typography": {
+              "heading_style": "紧凑无衬线标题",
+              "body_style": "中性无衬线正文"
+            },
+            "composition": "以大字号标题和单一视觉重心建立记忆点。",
+            "rationale": "适合更强烈的数字品牌表达。",
+            "risks": ["可能显得距离感较强"],
+            "image_prompt": "minimal high contrast tea brand direction",
+            "preview_asset_id": "33333333-3333-4333-8333-333333333333"
+          }
+        ]
+      },
+      "status": "GENERATED",
+      "created_at": "2026-07-04T10:03:00Z"
+    }
+  },
+  "decisions": [
+    {
+      "id": "demo-decision-directions-001",
+      "project_id": "demo-project-001",
+      "stage": "DIRECTIONS",
+      "action": "SELECT_VERSION",
+      "source_version_id": "demo-version-directions-001",
+      "selected_item_id": "direction-001",
+      "resulting_stage_run_id": "demo-run-logo-001",
+      "created_by": "local-developer",
+      "payload": {
+        "version_id": "demo-version-directions-001",
+        "selected_item_id": "direction-001"
+      },
+      "created_at": "2026-07-04T10:06:00Z"
+    }
+  ],
+  "task": {
+    "id": "demo-run-logo-001",
+    "project_id": "demo-project-001",
+    "stage": "LOGO",
+    "status": "WAITING_USER",
+    "error": null
+  },
+  "result": {
+    "id": "demo-version-directions-001",
+    "stage": "DIRECTIONS",
+    "version": 1,
+    "selected": true,
+    "items": [
+      {
+        "id": "direction-001",
+        "title": "方向一",
+        "summary": "以东方茶叶和城市线条构建现代视觉。"
+      },
+      {
+        "id": "direction-002",
+        "title": "方向二",
+        "summary": "用轻盈插画和明亮色彩表达亲和力。"
+      },
+      {
+        "id": "direction-003",
+        "title": "方向三",
+        "summary": "以高对比排版和单色图形建立强识别。"
+      }
+    ]
+  }
+}

@@ -1,0 +1,163 @@
+.section {
+  display: grid;
+  gap: 14px;
+}
+
+.brief {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.briefItem,
+.card {
+  border: 1px solid #d7deea;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.briefItem {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px;
+}
+
+.briefItem span,
+.metaLabel {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.briefItem strong {
+  overflow-wrap: anywhere;
+  color: #172033;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+}
+
+.selected {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 12%);
+}
+
+.header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 18px;
+}
+
+.title small {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.copy {
+  margin: 0;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.keywords,
+.palette {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.keyword {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.color {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  min-width: 120px;
+  color: #334155;
+  font-size: 12px;
+}
+
+.swatch {
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgb(15 23 42 / 16%);
+  border-radius: 999px;
+}
+
+.meta {
+  display: grid;
+  gap: 8px;
+}
+
+.metaBlock {
+  display: grid;
+  gap: 3px;
+}
+
+.metaBlock p {
+  margin: 0;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@media (max-width: 1100px) {
+  .brief,
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

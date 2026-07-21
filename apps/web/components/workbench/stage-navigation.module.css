@@ -1,0 +1,104 @@
+.nav {
+  display: grid;
+  gap: 8px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) max-content;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card);
+  color: var(--ink);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--r-pill);
+  background: var(--mut);
+}
+
+.body {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name,
+.meta,
+.badge {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.meta {
+  color: var(--mut);
+  font-size: 12px;
+}
+
+.badge {
+  max-width: 160px;
+  padding: 4px 8px;
+  border-radius: var(--r-pill);
+  background: var(--fill);
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.locked {
+  color: var(--mut);
+  background: var(--fill);
+}
+
+.locked .dot {
+  background: var(--mut);
+}
+
+.generating {
+  color: var(--rose);
+  border-color: var(--rose-line);
+  background: var(--rose-soft);
+}
+
+.generating .dot {
+  background: var(--rose);
+}
+
+.awaitingDecision {
+  color: var(--warn);
+  background: var(--warn-soft);
+}
+
+.awaitingDecision .dot {
+  background: var(--warn);
+}
+
+.confirmed {
+  color: var(--ok);
+  background: var(--ok-soft);
+}
+
+.confirmed .dot {
+  background: var(--ok);
+}
+
+.stale {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.stale .dot {
+  background: var(--danger);
+}

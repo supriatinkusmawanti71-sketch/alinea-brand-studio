@@ -1,0 +1,12 @@
+.git
+.github
+.venv
+node_modules
+apps/web/.next
+*.tsbuildinfo
+artifacts
+tmp
+*.log
+.env
+.env.*
+!.env.example
