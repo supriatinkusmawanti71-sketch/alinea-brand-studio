@@ -1,12 +1,12 @@
-# Alinea Brand Workbench
+# Alinea Brand Studio
 
-品牌 Agent 项目的共同开发仓库。当前目标是在约 7 天内先跑通完整逻辑，默认使用假 AI，不追求生成和页面效果。
+AI 品牌设计 Agent 平台,个人全栈项目。输入品牌需求后,由三 Agent 工作流(艺术总监 → Logo 设计师 → IP 设计师)分阶段生成设计方案,逐阶段选择确认,最终导出完整品牌交付包。默认使用 Fake Provider 零成本跑通全流程,切换环境变量即可接入真实模型。
 
 原有视觉原型保存在 `prototypes/legacy/index.html`。正式网页代码放在 `apps/web/`。
 
-当前 2 名前端、3 名后端的职责和第一轮任务见 [`docs/team-plan.md`](docs/team-plan.md)。
+模块划分、里程碑与工程规则见 [`docs/project-plan.md`](docs/project-plan.md)。
 
-## 所有人先安装
+## 环境准备
 
 必装：
 
@@ -22,7 +22,7 @@
 - Python 3.12
 - uv
 
-检查共同环境：
+检查开发环境：
 
 ```bash
 ./scripts/check-environment.sh
@@ -31,8 +31,8 @@
 ## 第一次启动
 
 ```bash
-git clone https://github.com/xiaoyangqiqi7777777/aline-brand-workbench.git
-cd aline-brand-workbench
+git clone https://github.com/supriatinkusmawanti71-sketch/alinea-brand-studio.git
+cd alinea-brand-studio
 cp .env.example .env
 docker compose up --build
 ```
@@ -41,7 +41,7 @@ docker compose up --build
 
 | 服务 | 地址 | 用途 |
 |---|---|---|
-| 统一入口 | http://localhost:8080 | 所有人优先使用这个地址 |
+| 统一入口 | http://localhost:8080 | 推荐从这个地址使用 |
 | Next.js 网页 | http://localhost:3000 | 前端直接调试 |
 | FastAPI 文档 | http://localhost:8000/api/docs | 查看和测试后端接口 |
 | API 健康检查 | http://localhost:8000/api/v1/health/ready | 检查数据库和 Redis |
@@ -89,26 +89,26 @@ uv run celery -A apps.api.app.celery_app.celery_app worker --loglevel=INFO
 
 本地直接运行 API 时，需要把 `.env` 中的 `postgres`、`redis`、`minio` 主机名改为 `localhost`，数据库等基础服务仍可通过 Docker 启动。
 
-## 团队统一约定
+## 开发约定
 
-- 默认 `TEXT_MODEL_PROVIDER=fake`、`IMAGE_MODEL_PROVIDER=fake`，不要自行加入真实密钥。
+- 默认 `TEXT_MODEL_PROVIDER=fake`、`IMAGE_MODEL_PROVIDER=fake`，仓库中不放真实密钥。
 - 真实 Agent 联调时，把两个 provider 都切到 `siliconflow`，并在私有 `.env` 中配置 `SILICONFLOW_API_KEY`、`TEXT_MODEL_NAME`、`IMAGE_MODEL_NAME`。
 - OpenRouter 测试联调时，把两个 provider 都切到 `openrouter`，在私有 `.env` 中配置 `OPENROUTER_API_KEY`，默认文本模型可用 `bytedance-seed/seed-2.0-mini`，默认图片模型可用 `bytedance-seed/seedream-4.5`，Seedream 图片尺寸用 `OPENROUTER_IMAGE_SIZE=2048x2048`。
 - OpenAI 联调时，把两个 provider 都切到 `openai`，在私有 `.env` 中配置 `OPENAI_API_KEY`；默认文本模型可用 `gpt-4.1-mini`，默认图片模型可用 `gpt-image-2`。
 - 三 Agent 可单独覆盖模型：`SILICONFLOW_*`、`OPENROUTER_*` 或 `OPENAI_*` 的 `ART_DIRECTOR_TEXT_MODEL`、`LOGO_AGENT_TEXT_MODEL`、`IP_DESIGNER_TEXT_MODEL`；图片模型可用 `DIRECTIONS_IMAGE_MODEL`、`LOGO_IMAGE_MODEL`、`IP_IMAGE_MODEL` 覆盖。
-- 每个人从最新 `main` 创建自己的功能分支，不直接修改 `main`。
+- 功能开发从最新 `main` 拉分支，`main` 保持随时可运行。
 - `.env`、模型密钥、数据库密码禁止提交 Git。
-- 公共假数据放在 `contracts/examples/`，不要在每个模块复制一份。
-- 接口字段由后端负责人确认；前端从 OpenAPI 或共享契约读取。
-- 提交前运行 `make check`，把实际结果写进 PR。
-- 端口冲突时只修改自己本机 `.env`，不要修改公共默认值。
+- 共享假数据放在 `contracts/examples/`，不在各模块重复维护。
+- 接口字段以 OpenAPI/共享契约为准，前端不手写第二套 DTO。
+- 提交前运行 `make check`。
+- 端口冲突时通过本机 `.env` 覆盖，不修改公共默认值。
 
 ## 项目结构
 
 ```text
 apps/web/            Next.js 网页
 apps/api/            FastAPI 和 Celery Worker
-contracts/examples/  全团队共用的假数据
+contracts/examples/  共享契约假数据
 infra/docker/        Web/API 镜像
 infra/nginx/         统一入口
 tests/               后端和流程测试
@@ -125,4 +125,4 @@ docker compose logs web --tail=200
 docker compose logs worker --tail=200
 ```
 
-仍无法启动时，把以下内容发给后端 3（环境负责人）：操作系统、`docker compose ps` 输出、失败服务日志，以及自己是否修改过 `.env`。
+仍无法启动时，重点核对三件事：Docker Desktop 是否在运行、`.env` 是否从 `.env.example` 复制且未改动服务主机名、端口是否被本机其他进程占用。必要时 `make clean` 后重新 `docker compose up --build`。
